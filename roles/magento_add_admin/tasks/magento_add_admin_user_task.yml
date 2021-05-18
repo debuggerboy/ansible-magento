@@ -1,0 +1,12 @@
+# roles/magento_add_admin/tasks/magento_add_admin_user_task.yml
+---
+
+- name: Add Magento Admin User's in a loop May take some time
+  shell: php bin/magento admin:user:create \
+    --admin-firstname={{ item.admin_firstname }} \
+    --admin-lastname={{ item.admin_lastname }} \
+    --admin-email={{ item.admin_email }} \
+    --admin-user={{ item.admin_username }} \
+    --admin-password={{ item.admin_password }}
+  with_items:
+    - "{{ magento_admin_users }}"
