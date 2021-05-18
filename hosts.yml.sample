@@ -1,0 +1,43 @@
+all:
+  children:
+    integration:
+      children:
+        integration_app:
+          hosts:
+            mcloud_integration_app1:
+              ansible_user: mcloud_project_id-integration-klmnopq--mymagento
+              ansible_host: ssh.magento.cloud
+
+    staging:
+      children:
+        stage_app:
+          hosts:
+            mcloud_stage_app1:
+              ansible_user: 1.ent-mcloud_project_id-staging-tuvwxyz
+              ansible_host: ssh.magento.cloud
+            mcloud_stage_app2:
+              ansible_user: 2.ent-mcloud_project_id-staging-tuvwxyz
+              ansible_host: ssh.magento.cloud
+            mcloud_stage_app3:
+              ansible_user: 3.ent-mcloud_project_id-staging-tuvwxyz
+              ansible_host: ssh.magento.cloud
+
+    production:
+      children:
+        prod_app:
+          hosts:
+            mcloud_prod_app1:
+              ansible_user: 1.ent-mcloud_project_id-production-abcdefg
+              ansible_host: ssh.magento.cloud
+            mcloud_prod_app2:
+              ansible_user: 2.ent-mcloud_project_id-production-abcdefg
+              ansible_host: ssh.magento.cloud
+            mcloud_prod_app3:
+              ansible_user: 3.ent-mcloud_project_id-production-abcdefg
+              ansible_host: ssh.magento.cloud
+
+  vars:
+    ansible_python_interpreter: /usr/bin/python
+    # I am using "/tmp" since I am on Magento Cloud (read-only home directory).
+    # If you are on any other platform YOU CAN COMMENT OUT THE BELOW LINE
+    ansible_remote_tmp: /tmp
